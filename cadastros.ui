@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>913</width>
-    <height>626</height>
+    <height>627</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -140,7 +140,7 @@ QPushButton{
                       <x>0</x>
                       <y>0</y>
                       <width>63</width>
-                      <height>466</height>
+                      <height>467</height>
                      </rect>
                     </property>
                     <attribute name="label">
@@ -273,7 +273,7 @@ QPushButton{
                       <x>0</x>
                       <y>0</y>
                       <width>159</width>
-                      <height>466</height>
+                      <height>467</height>
                      </rect>
                     </property>
                     <attribute name="label">
@@ -450,7 +450,7 @@ QTableWidget{
 }</string>
                     </property>
                     <property name="currentIndex">
-                     <number>0</number>
+                     <number>1</number>
                     </property>
                     <widget class="QWidget" name="tab">
                      <attribute name="title">
@@ -731,6 +731,22 @@ background-color: rgb(255, 255, 255);</string>
                        <layout class="QHBoxLayout" name="horizontalLayout_4">
                         <item>
                          <widget class="QTableWidget" name="tableWidget">
+                          <property name="font">
+                           <font>
+                            <pointsize>10</pointsize>
+                            <weight>75</weight>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(0, 0, 0);</string>
+                          </property>
+                          <attribute name="horizontalHeaderCascadingSectionResizes">
+                           <bool>false</bool>
+                          </attribute>
+                          <attribute name="horizontalHeaderDefaultSectionSize">
+                           <number>150</number>
+                          </attribute>
                           <column>
                            <property name="text">
                             <string>ID</string>
@@ -823,12 +839,19 @@ background-color: rgb(255, 255, 255);</string>
 }
 
 QPushButton{
+	
+	color: rgb(0, 0, 0);
 	border-radius: 15px;
 	background-color: rgb(243,243,243);
 }
 
 QFrame{
 	background-color: rgb(61,61,61);
+}
+
+QTableWidget{
+	
+	color: rgb(0, 0, 0);
 }
 </string>
                           </property>

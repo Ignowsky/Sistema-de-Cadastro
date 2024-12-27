@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(913, 626)
+        MainWindow.resize(913, 627)
         MainWindow.setStyleSheet(u"background-color: rgb(43, 43, 43);")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -104,7 +104,7 @@ class Ui_MainWindow(object):
 "}")
         self.page = QWidget()
         self.page.setObjectName(u"page")
-        self.page.setGeometry(QRect(0, 0, 63, 466))
+        self.page.setGeometry(QRect(0, 0, 63, 467))
         self.verticalLayout_5 = QVBoxLayout(self.page)
         self.verticalLayout_5.setSpacing(6)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -155,7 +155,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page, u"Menu")
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
-        self.page_2.setGeometry(QRect(0, 0, 159, 466))
+        self.page_2.setGeometry(QRect(0, 0, 159, 467))
         self.verticalLayout_12 = QVBoxLayout(self.page_2)
         self.verticalLayout_12.setSpacing(0)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
@@ -467,6 +467,13 @@ class Ui_MainWindow(object):
         __qtablewidgetitem15 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(15, __qtablewidgetitem15)
         self.tableWidget.setObjectName(u"tableWidget")
+        font2 = QFont()
+        font2.setPointSize(10)
+        font2.setBold(True)
+        self.tableWidget.setFont(font2)
+        self.tableWidget.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
+        self.tableWidget.horizontalHeader().setDefaultSectionSize(150)
 
         self.horizontalLayout_4.addWidget(self.tableWidget)
 
@@ -479,12 +486,19 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QPushButton{\n"
+"	\n"
+"	color: rgb(0, 0, 0);\n"
 "	border-radius: 15px;\n"
 "	background-color: rgb(243,243,243);\n"
 "}\n"
 "\n"
 "QFrame{\n"
 "	background-color: rgb(61,61,61);\n"
+"}\n"
+"\n"
+"QTableWidget{\n"
+"	\n"
+"	color: rgb(0, 0, 0);\n"
 "}\n"
 "")
         self.frame_3.setFrameShape(QFrame.StyledPanel)
@@ -598,7 +612,7 @@ class Ui_MainWindow(object):
 
         self.toolBox.setCurrentIndex(0)
         self.Pages.setCurrentIndex(1)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
