@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>menu-principal.png</file>
+    <file>cardapio.png</file>
+    <file>icons8-microsoft-outlook-2019-48.png</file>
+    <file>images.png</file>
+    <file>linkedin.png</file>
+    <file>instagram.png</file>
+    <file>whatsapp.png</file>
+  </qresource>
+</RCC>

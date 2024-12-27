@@ -31,9 +31,15 @@ QLabel{
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QFrame" name="left_Container">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
-          <width>200</width>
+          <width>0</width>
           <height>16777215</height>
          </size>
         </property>
@@ -133,12 +139,12 @@ QPushButton{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>171</width>
-                      <height>483</height>
+                      <width>63</width>
+                      <height>466</height>
                      </rect>
                     </property>
                     <attribute name="label">
-                     <string>Page 1</string>
+                     <string>Menu</string>
                     </attribute>
                     <layout class="QVBoxLayout" name="verticalLayout_5">
                      <property name="spacing">
@@ -266,12 +272,12 @@ QPushButton{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>171</width>
-                      <height>483</height>
+                      <width>159</width>
+                      <height>466</height>
                      </rect>
                     </property>
                     <attribute name="label">
-                     <string>Page 2</string>
+                     <string>Informações</string>
                     </attribute>
                     <layout class="QVBoxLayout" name="verticalLayout_12">
                      <property name="spacing">
@@ -350,7 +356,7 @@ QPushButton{
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item alignment="Qt::AlignLeft">
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="btn_toggle">
                 <property name="cursor">
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
@@ -358,7 +364,7 @@ QPushButton{
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="C:/Users/joaop/Downloads/Icons/Icons_.qrc">
+                 <iconset resource="Icons/Icons_.qrc">
                   <normaloff>:/icons/menu-principal.png</normaloff>:/icons/menu-principal.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -380,7 +386,7 @@ QPushButton{
             </widget>
            </item>
            <item>
-            <widget class="QFrame" name="main_Frame_">
+            <widget class="QFrame" name="main_Frame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                <horstretch>0</horstretch>
@@ -410,7 +416,7 @@ QPushButton{
                <number>0</number>
               </property>
               <item>
-               <widget class="QStackedWidget" name="stackedWidget">
+               <widget class="QStackedWidget" name="Pages">
                 <property name="currentIndex">
                  <number>1</number>
                 </property>
@@ -455,12 +461,18 @@ QTableWidget{
                        <widget class="QFrame" name="frame_4">
                         <property name="styleSheet">
                          <string notr="true">QLineEdit{
-	background-color: rgb(255,255,255);
+	background-color: rgb(149, 149, 149);
 	font: 10px &quot;MS Shell Dlg 2&quot;;
 }
 
 QFrame{
-	background-color: rgb(61,61,61);
+	
+	background-color: rgb(204, 204, 204);
+}
+
+QLineEdit:placeholder {
+	
+	color: rgb(187, 187, 187);
 }</string>
                         </property>
                         <property name="frameShape">
@@ -472,6 +484,9 @@ QFrame{
                         <layout class="QGridLayout" name="gridLayout">
                          <item row="5" column="1">
                           <widget class="QLineEdit" name="txt_SistemaOperacional">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>SO</string>
                            </property>
@@ -479,6 +494,9 @@ QFrame{
                          </item>
                          <item row="5" column="2">
                           <widget class="QLineEdit" name="txt_Licenciado">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Licenciado</string>
                            </property>
@@ -486,6 +504,9 @@ QFrame{
                          </item>
                          <item row="4" column="0">
                           <widget class="QLineEdit" name="txt_Marca">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Marca</string>
                            </property>
@@ -493,6 +514,9 @@ QFrame{
                          </item>
                          <item row="4" column="1">
                           <widget class="QLineEdit" name="txt_Processador">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Processador</string>
                            </property>
@@ -500,6 +524,9 @@ QFrame{
                          </item>
                          <item row="5" column="0">
                           <widget class="QLineEdit" name="txt_Service">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Service</string>
                            </property>
@@ -507,6 +534,9 @@ QFrame{
                          </item>
                          <item row="6" column="2">
                           <widget class="QLineEdit" name="txt_Cor">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Cor</string>
                            </property>
@@ -514,6 +544,12 @@ QFrame{
                          </item>
                          <item row="2" column="2">
                           <widget class="QLineEdit" name="txt_Setor">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
+                           <property name="readOnly">
+                            <bool>false</bool>
+                           </property>
                            <property name="placeholderText">
                             <string>Setor</string>
                            </property>
@@ -521,6 +557,9 @@ QFrame{
                          </item>
                          <item row="6" column="1">
                           <widget class="QLineEdit" name="txt_DataAquisicao">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Data de Aquisição</string>
                            </property>
@@ -539,12 +578,14 @@ QFrame{
                            </property>
                            <property name="styleSheet">
                             <string notr="true">QPushButton:hover{
-	background-color:rgb(131,131,131);
+	background-color: rgb(194, 194, 194);
 	border-radius: 15px;
-	color: #ffff
+	
+	color: rgb(0, 0, 0);
 }
 
 QPushButton{
+	color: rgb(0,0,0);
 	border-radius: 15px;
 	background-color: rgb(243,243,243);
 }</string>
@@ -556,6 +597,9 @@ QPushButton{
                          </item>
                          <item row="4" column="3">
                           <widget class="QLineEdit" name="txt_SSD">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>SSD</string>
                            </property>
@@ -563,6 +607,9 @@ QPushButton{
                          </item>
                          <item row="2" column="1">
                           <widget class="QLineEdit" name="txt_NomeDispositivo">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Nome do Dispositivo</string>
                            </property>
@@ -570,6 +617,9 @@ QPushButton{
                          </item>
                          <item row="2" column="3">
                           <widget class="QLineEdit" name="txt_Colaborador">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Colaborador</string>
                            </property>
@@ -577,6 +627,9 @@ QPushButton{
                          </item>
                          <item row="5" column="3">
                           <widget class="QLineEdit" name="txt_Arquitetura">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Arquitetura</string>
                            </property>
@@ -584,6 +637,9 @@ QPushButton{
                          </item>
                          <item row="6" column="0">
                           <widget class="QLineEdit" name="txt_AnoFabricacao">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Ano de Fabricação</string>
                            </property>
@@ -591,6 +647,18 @@ QPushButton{
                          </item>
                          <item row="2" column="0">
                           <widget class="QLineEdit" name="txt_Id">
+                           <property name="font">
+                            <font>
+                             <family>MS Shell Dlg 2</family>
+                             <pointsize>-1</pointsize>
+                             <weight>50</weight>
+                             <italic>false</italic>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>ID</string>
                            </property>
@@ -598,6 +666,9 @@ QPushButton{
                          </item>
                          <item row="3" column="0" colspan="4">
                           <widget class="QLineEdit" name="txt_IdDispositivo">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>ID Dispositivo</string>
                            </property>
@@ -605,6 +676,9 @@ QPushButton{
                          </item>
                          <item row="4" column="2">
                           <widget class="QLineEdit" name="txt_MemoriaRam">
+                           <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                           </property>
                            <property name="placeholderText">
                             <string>Memoria RAM</string>
                            </property>
@@ -745,7 +819,7 @@ background-color: rgb(255, 255, 255);</string>
                            <string notr="true">QPushButton:hover{
 	background-color:rgb(131,131,131);
 	border-radius: 15px;
-	color: #ffff
+	color: #ffffff
 }
 
 QPushButton{
@@ -927,7 +1001,7 @@ QFrame{
   </widget>
  </widget>
  <resources>
-  <include location="C:/Users/joaop/Downloads/Icons/Icons_.qrc"/>
+  <include location="Icons/Icons_.qrc"/>
  </resources>
  <connections/>
 </ui>
