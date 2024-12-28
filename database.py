@@ -45,6 +45,7 @@ class Data_base:
         except mysql.connector.Error as err:
             print(f"Erro ao inserir dados: {err}")
             return "Erro ao inserir dados"
+        
         # Atualiza a tabela automaticament após o cadastro
         self.buscar_maquinas()
         
@@ -60,7 +61,7 @@ class Data_base:
             
     def delete_maquina(self, Id_Maquina):
         try:
-            query = """DELETE FROM cadastro_maquinas WHERE Id_Maquina = %s"""
+            query = """DELETE FROM bd_cadastros.cadastro_maquinas WHERE Id_Maquina = %s"""
             self.cursor.execute(query, (Id_Maquina,))
             self.connection.commit()
             return "Dados deletados com sucesso"
@@ -70,8 +71,9 @@ class Data_base:
             
     def update_maquina(self, fullDataSet):
         query = """
-            UPDATE cadastro_maquinas
-            SET Nome_Dispositivo = %s,
+            UPDATE bd_cadastros.cadastro_maquinas
+            SET Id_Maquina = %s,
+                Nome_Dispositivo = %s,
                 Setor = %s,
                 Colaborador = %s,
                 ID_Dispositivo = %s,
@@ -88,10 +90,21 @@ class Data_base:
                 cor = %s
             WHERE Id_Maquina = %s
         """
+        
         try:
+            print(f"Executando query com os seguintes dados: {fullDataSet}")  # Depuração: exibir dados passados
+
+            # Depuração adicional para verificar tipos
+            for idx, value in enumerate(fullDataSet):
+                print(f"Coluna {idx + 1}: {value} (Tipo: {type(value)})")
+
             self.cursor.execute(query, fullDataSet)
             self.connection.commit()
+            print("Dados atualizados no banco de dados com sucesso.")
             return "Dados atualizados com sucesso"
         except mysql.connector.Error as err:
             print(f"Erro ao atualizar dados: {err}")
-            return "Erro ao atualizar dados"
+            print(f"Query: {query}")
+            print(f"Dados: {fullDataSet}")
+            self.connection.rollback()  # Desfazer alterações em caso de erro
+            return f"Erro ao atualizar dados: {err}"

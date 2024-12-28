@@ -176,7 +176,7 @@ QPushButton{
                         </font>
                        </property>
                        <property name="cursor">
-                        <cursorShape>ForbiddenCursor</cursorShape>
+                        <cursorShape>PointingHandCursor</cursorShape>
                        </property>
                        <property name="text">
                         <string>Home</string>
@@ -739,7 +739,34 @@ background-color: rgb(255, 255, 255);</string>
                            </font>
                           </property>
                           <property name="styleSheet">
-                           <string notr="true">color: rgb(0, 0, 0);</string>
+                           <string notr="true">QTableWidget{
+	gridline-color: rgb(0, 0, 0);
+	color: rgb(0, 0, 0);
+	alternate-background-color: rgb(202, 202, 202);
+}
+
+QTableWidget::item:selected
+{
+	
+	color: rgb(255, 255, 255);
+	font: 75 10pt &quot;MS Shell Dlg 2&quot;;
+	background-color: rgb(154, 154, 154);
+}
+
+QTableWidget::item:hover
+{
+	
+	background-color: rgb(154, 154, 154);
+}</string>
+                          </property>
+                          <property name="alternatingRowColors">
+                           <bool>true</bool>
+                          </property>
+                          <property name="selectionMode">
+                           <enum>QAbstractItemView::SingleSelection</enum>
+                          </property>
+                          <property name="selectionBehavior">
+                           <enum>QAbstractItemView::SelectRows</enum>
                           </property>
                           <attribute name="horizontalHeaderCascadingSectionResizes">
                            <bool>false</bool>
@@ -764,7 +791,12 @@ background-color: rgb(255, 255, 255);</string>
                           </column>
                           <column>
                            <property name="text">
-                            <string>Arquitetura</string>
+                            <string>Colaborador</string>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>ID Dispositivo</string>
                            </property>
                           </column>
                           <column>
@@ -804,7 +836,7 @@ background-color: rgb(255, 255, 255);</string>
                           </column>
                           <column>
                            <property name="text">
-                            <string>Colaborador</string>
+                            <string>Arquitetura</string>
                            </property>
                           </column>
                           <column>
@@ -820,11 +852,6 @@ background-color: rgb(255, 255, 255);</string>
                           <column>
                            <property name="text">
                             <string>Cor</string>
-                           </property>
-                          </column>
-                          <column>
-                           <property name="text">
-                            <string>ID Dispositivo</string>
                            </property>
                           </column>
                          </widget>
@@ -849,10 +876,11 @@ QFrame{
 	background-color: rgb(61,61,61);
 }
 
-QTableWidget{
-	
-	color: rgb(0, 0, 0);
-}
+
+
+
+
+
 </string>
                           </property>
                           <property name="frameShape">

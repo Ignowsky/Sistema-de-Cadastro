@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QMainWindow,
-    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTabWidget, QTableWidget, QTableWidgetItem, QToolBox,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QFrame, QGridLayout,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTabWidget, QTableWidget, QTableWidgetItem,
+    QToolBox, QVBoxLayout, QWidget)
 import iconsrc
 
 class Ui_MainWindow(object):
@@ -115,7 +115,7 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setPointSize(11)
         self.btn_Home.setFont(font)
-        self.btn_Home.setCursor(QCursor(Qt.CursorShape.ForbiddenCursor))
+        self.btn_Home.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         self.verticalLayout_5.addWidget(self.btn_Home)
 
@@ -471,7 +471,28 @@ class Ui_MainWindow(object):
         font2.setPointSize(10)
         font2.setBold(True)
         self.tableWidget.setFont(font2)
-        self.tableWidget.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.tableWidget.setStyleSheet(u"QTableWidget{\n"
+"	gridline-color: rgb(0, 0, 0);\n"
+"	color: rgb(0, 0, 0);\n"
+"	alternate-background-color: rgb(202, 202, 202);\n"
+"}\n"
+"\n"
+"QTableWidget::item:selected\n"
+"{\n"
+"	\n"
+"	color: rgb(255, 255, 255);\n"
+"	font: 75 10pt \"MS Shell Dlg 2\";\n"
+"	background-color: rgb(154, 154, 154);\n"
+"}\n"
+"\n"
+"QTableWidget::item:hover\n"
+"{\n"
+"	\n"
+"	background-color: rgb(154, 154, 154);\n"
+"}")
+        self.tableWidget.setAlternatingRowColors(True)
+        self.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(150)
 
@@ -496,10 +517,11 @@ class Ui_MainWindow(object):
 "	background-color: rgb(61,61,61);\n"
 "}\n"
 "\n"
-"QTableWidget{\n"
-"	\n"
-"	color: rgb(0, 0, 0);\n"
-"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
 "")
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
@@ -658,31 +680,31 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem2 = self.tableWidget.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Setor", None));
         ___qtablewidgetitem3 = self.tableWidget.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Arquitetura", None));
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Colaborador", None));
         ___qtablewidgetitem4 = self.tableWidget.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Marca", None));
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"ID Dispositivo", None));
         ___qtablewidgetitem5 = self.tableWidget.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Processador", None));
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Marca", None));
         ___qtablewidgetitem6 = self.tableWidget.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Mem\u00f3ria Ram", None));
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Processador", None));
         ___qtablewidgetitem7 = self.tableWidget.horizontalHeaderItem(7)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"SSD", None));
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Mem\u00f3ria Ram", None));
         ___qtablewidgetitem8 = self.tableWidget.horizontalHeaderItem(8)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Service", None));
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"SSD", None));
         ___qtablewidgetitem9 = self.tableWidget.horizontalHeaderItem(9)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"SO", None));
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Service", None));
         ___qtablewidgetitem10 = self.tableWidget.horizontalHeaderItem(10)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"Licenciado", None));
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"SO", None));
         ___qtablewidgetitem11 = self.tableWidget.horizontalHeaderItem(11)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Colaborador", None));
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"Licenciado", None));
         ___qtablewidgetitem12 = self.tableWidget.horizontalHeaderItem(12)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Ano Fabrica\u00e7\u00e3o", None));
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Arquitetura", None));
         ___qtablewidgetitem13 = self.tableWidget.horizontalHeaderItem(13)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Data Aquisi\u00e7\u00e3o", None));
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"Ano Fabrica\u00e7\u00e3o", None));
         ___qtablewidgetitem14 = self.tableWidget.horizontalHeaderItem(14)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Cor", None));
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Data Aquisi\u00e7\u00e3o", None));
         ___qtablewidgetitem15 = self.tableWidget.horizontalHeaderItem(15)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"ID Dispositivo", None));
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"Cor", None));
         self.btn_Excel.setText(QCoreApplication.translate("MainWindow", u"Gerar Excel", None))
         self.btn_Alterar.setText(QCoreApplication.translate("MainWindow", u"Alterar", None))
         self.btn_Excluir.setText(QCoreApplication.translate("MainWindow", u"Excluir", None))

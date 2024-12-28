@@ -4,7 +4,9 @@ from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (QApplication, QMainWindow, QMessageBox,QTableWidgetItem)
 from ui_main import Ui_MainWindow
 import sys
+import mysql.connector
 from database import Data_base
+import pandas as pd
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -34,8 +36,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Comando que irá preencher a tabela com os dados do banco
         self.buscar_maquinas()
         
+        ##########################################################
         # Botão para atualizar
         self.btn_Alterar.clicked.connect(self.update_maquinas)
+        
+        ##########################################################
+        # Botao para excluir os registros
+        self.btn_Excluir.clicked.connect(self.deletar_maquina)
+        
+        ##########################################################
+        # Botão para gerar o arquivo Excel
+        self.btn_Excel.clicked.connect(self.gerar_excel)
+
 
     def left_Menu(self):
         width = self.left_Container.width()
@@ -75,7 +87,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         db = Data_base()
         db.connect()
         fullDataSet = (
-            self.txt_Id.text(),
+            int(self.txt_Id.text()),
             self.txt_NomeDispositivo.text(),
             self.txt_Setor.text(),
             self.txt_Colaborador.text(),
@@ -134,37 +146,120 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         db.close_connection()
         
-        
+
     def update_maquinas(self):
+        # Obter a linha selecionada
+        selected_rows = self.tableWidget.selectionModel().selectedRows()
         
+        if not selected_rows:
+            # Se nenhuma linha estiver selecionada, exibir mensagem de erro
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
+            msg.setWindowTitle("Seleção necessária")
+            msg.setText("Por favor, selecione uma linha para atualizar.")
+            msg.exec()
+            return
+
+        # Obter os dados da linha selecionada
+        row = selected_rows[0].row()  # Pega a primeira linha selecionada
+
         dados = []
-        update_dados = []
-        
-        
-        for row in range (self.tableWidget.rowCount()):
-            for column in range(self.tableWidget.columnCount()):
-                dados.append(self.tableWidget.item(row, column).text())
-                
-            update_dados.append(dados)
-            dados = []
-            
+        for column in range(self.tableWidget.columnCount()):
+            item = self.tableWidget.item(row, column)
+            dados.append(item.text() if item else '')  # Verificar se a célula está vazia
+
+        # Adicionar o Id_Maquina como último dado, que será usado no WHERE
+        id_maquina = dados[0]  # Supondo que o Id_Maquina seja a primeira coluna
+        dados.append(id_maquina)
+
         # Atualizar dados no banco de dados
         db = Data_base()
         db.connect()
-        
-        for maq in update_dados:
-            db.update_maquina(tuple(maq))        
+
+        # Passar os dados da linha selecionada para a função de atualização
+        resultado = db.update_maquina(tuple(dados))
+
         db.close_connection()
+
+        # Exibir mensagem de sucesso ou erro
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information if "sucesso" in resultado.lower() else QMessageBox.Critical)
+        msg.setWindowTitle("Atualização")
+        msg.setText(resultado)
+        msg.exec()
+
+        # Atualizar a tabela
+        self.tableWidget.clearContents()
+        self.buscar_maquinas()  # Refrescar os dados da tabela
+
+    def deletar_maquina(self):
+        db = Data_base()
+        db.connect()
+
+        # Configuração do QMessageBox para confirmação
+        msg = QMessageBox()
+        msg.setWindowTitle("Deletar Máquina")
+        msg.setText("Este registro será excluído permanentemente.")
+        msg.setInformativeText("Deseja continuar?")
+        msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        resp = msg.exec()  # Correto: Chamar o método exec()
+
+        if resp == QMessageBox.Yes:  # Comparar com QMessageBox.Yes corretamente
+            # Obtém o ID da máquina selecionada na tabela
+            Id = self.tableWidget.selectionModel().currentIndex().siblingAtColumn(0).data()
+            
+            # Chama o método para deletar a máquina
+            result = db.delete_maquina(Id)
+
+            # Atualiza a tabela após exclusão
+            self.buscar_maquinas()
+
+            # Exibe mensagem de sucesso
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setWindowTitle("Registro Excluído")
+            msg.setText("Registro excluído com sucesso.")
+            msg.exec()
+        else:
+            # Caso o usuário escolha "Não", nenhuma ação é tomada
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setWindowTitle("Operação Cancelada")
+            msg.setText("A exclusão foi cancelada.")
+            msg.exec()
+
+        # Fecha a conexão com o banco de dados
+        db.close_connection()
+          
+    def gerar_excel(self):
         
+        cnx = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            password='joao1301',
+            database='bd_cadastros'
+        )
+            
+        maquinas = pd.read_sql_query(
+            """
+            SELECT *
+            FROM bd_cadastros.cadastro_maquinas
+            """,
+            cnx
+        )
+            
+        maquinas.to_excel('maquinas.xlsx', sheet_name='Maquinas', index=False)
+            
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)
-        msg.setWindowTitle("Dados Atualizados com Sucesso")
-        msg.setText("Dados Atualizados com Sucesso")
+        msg.setWindowTitle("Arquivo Gerado!")
+        msg.setText("Arquivo gerado em Excel com sucesso!")
         msg.exec()
         
-        self.tableWidget.reset()
-        self.buscar_maquinas
-    
+            
+        
+        
+   
 if __name__ == "__main__":
     db = Data_base()
     db.connect()
