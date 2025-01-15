@@ -129,8 +129,7 @@ Arquivo responsável pela comunicação com o banco de dados. Principais funçõ
   - **select_all_maquinas**: Retorna todos os registros do banco.
   - **update_maquina**: Atualiza informações de uma máquina específica
 
-## Licença
-Este projeto está sob a licença MIT
+
 
 ```
 Se precisar adicionar mais seções ou personalizar algo, me avise! 😊
