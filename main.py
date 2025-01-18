@@ -130,6 +130,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             msg.exec()
             db.close_connection()
             return
+        
+        
     
     def buscar_maquinas(self):
 
@@ -247,8 +249,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             """,
             cnx
         )
+        
             
         maquinas.to_excel('maquinas.xlsx', sheet_name='Maquinas', index=False)
+        
+        # Gerar o arquivo Excel dos logs
+        logs = pd.read_sql_query(
+            """
+            SELECT *
+            FROM bd_cadastros.registros
+            """,
+            cnx
+        )
+        
+        logs.to_excel('logs.xlsx', sheet_name='Registros', index=False)
             
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)

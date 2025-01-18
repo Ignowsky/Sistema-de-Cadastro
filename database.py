@@ -1,4 +1,5 @@
 import mysql.connector
+from datetime import datetime
 
 class Data_base:
     def __init__(self, host='localhost', user='root', password='joao1301', database='bd_cadastros'):
@@ -41,6 +42,11 @@ class Data_base:
         try:
             self.cursor.execute(query, fullDataSet)
             self.connection.commit()
+            
+            # Registra o logo automaticamente apos o registro.
+            detalhes = f"Maquina {fullDataSet[1]} cadastrada com sucesso."
+            self.registrar_log("Cadastro de máquina", detalhes)
+            
             return "Dados inseridos com sucesso"
         except mysql.connector.Error as err:
             print(f"Erro ao inserir dados: {err}")
@@ -48,6 +54,8 @@ class Data_base:
         
         # Atualiza a tabela automaticament após o cadastro
         self.buscar_maquinas()
+        
+        
         
     def select_all_maquinas(self):
         try:
@@ -64,6 +72,11 @@ class Data_base:
             query = """DELETE FROM bd_cadastros.cadastro_maquinas WHERE Id_Maquina = %s"""
             self.cursor.execute(query, (Id_Maquina,))
             self.connection.commit()
+            
+            # Registra o logo automaticamente apos o registro.
+            detalhes = f"Maquina {Id_Maquina} excluida com sucesso."
+            self.registrar_log("Exclusão de Maquina", detalhes)
+            
             return "Dados deletados com sucesso"
         except mysql.connector.Error as err:
             print(f"Erro ao deletar dados: {err}")
@@ -101,6 +114,11 @@ class Data_base:
             self.cursor.execute(query, fullDataSet)
             self.connection.commit()
             print("Dados atualizados no banco de dados com sucesso.")
+            
+            # Registra o logo automaticamente apos o registro.
+            detalhes = f"Máquina {fullDataSet[1]} (ID: {fullDataSet[0]}) atualizada com sucesso!"
+            self.registrar_log("Atualização de Máquina", detalhes)
+            
             return "Dados atualizados com sucesso"
         except mysql.connector.Error as err:
             print(f"Erro ao atualizar dados: {err}")
@@ -108,3 +126,14 @@ class Data_base:
             print(f"Dados: {fullDataSet}")
             self.connection.rollback()  # Desfazer alterações em caso de erro
             return f"Erro ao atualizar dados: {err}"
+        
+    def registrar_log(self, acao, detalhes):
+        try:
+            # Registrar log no banco de dados
+            data_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            query = "INSERT INTO registros (data_hora, acao, detalhes) VALUES (%s, %s, %s)"
+            self.cursor.execute(query, (data_hora, acao, detalhes))
+            self.connection.commit()
+        except mysql.connector.Error as e:
+            print(f"Erro ao registrar log: {e}")
+            

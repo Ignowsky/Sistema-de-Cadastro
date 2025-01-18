@@ -1,0 +1,185 @@
+# Documentação Completa do Sistema de Cadastro de Máquinas
+
+## Visão Geral do Sistema
+
+O **Sistema de Cadastro de Máquinas** foi desenvolvido com o objetivo de gerenciar de forma eficiente o cadastro, atualização, exclusão e exportação de dados relacionados a máquinas. Este sistema é fundamentado em um banco de dados MySQL e conta com uma interface gráfica intuitiva para facilitar a interação do usuário. Além disso, o sistema registra logs detalhados para cada operação realizada, garantindo a rastreabilidade das ações.
+
+## Funcionalidades
+
+O sistema oferece as seguintes funcionalidades:
+
+1. **Cadastro de Máquinas**: Permite a inserção de dados sobre novas máquinas.
+2. **Atualização de Máquinas**: Possibilita a atualização das informações de máquinas já cadastradas.
+3. **Exclusão de Máquinas**: Remove máquinas do cadastro conforme a necessidade.
+4. **Geração de Logs**: Registra logs para todas as operações realizadas, garantindo a rastreabilidade.
+5. **Exportação de Dados**: Permite a exportação dos dados para arquivos Excel, facilitando a análise e compartilhamento das informações.
+
+## Tecnologias Utilizadas
+
+O sistema é desenvolvido utilizando as seguintes tecnologias:
+
+- **Python**: Linguagem principal utilizada para a implementação do sistema.
+- **MySQL**: Banco de dados utilizado para armazenar as informações das máquinas e logs.
+- **PyQt5**: Framework utilizado para a criação da interface gráfica do usuário.
+- **Pandas**: Biblioteca utilizada para manipulação de dados e exportação para Excel.
+- **SQLAlchemy (opcional)**: Para gerenciamento de banco de dados via ORM, caso necessário no futuro.
+
+## Estrutura do Banco de Dados
+
+A estrutura do banco de dados é composta por duas tabelas principais:
+
+### Tabela `cadastro_maquinas`
+
+Esta tabela armazena as informações sobre as máquinas cadastradas.
+
+```sql
+CREATE TABLE cadastro_maquinas (
+    Id_Maquina INT AUTO_INCREMENT PRIMARY KEY,
+    Nome_Dispositivo VARCHAR(100),
+    Setor VARCHAR(100),
+    Colaborador VARCHAR(100),
+    ID_Dispositivo VARCHAR(50),
+    Marca VARCHAR(50),
+    Processador VARCHAR(100),
+    Memoria_Ram VARCHAR(50),
+    SSD VARCHAR(50),
+    Service VARCHAR(50),
+    SO VARCHAR(50),
+    Licenciado VARCHAR(50),
+    Arquitetura VARCHAR(50),
+    Ano_Fabricacao INT,
+    Data_Aquisicao DATE,
+    Cor VARCHAR(50)
+);
+```
+
+### Tabela `logs`
+
+A tabela de logs armazena as ações realizadas no sistema, como cadastro, atualização e exclusão de máquinas.
+
+```sql
+CREATE TABLE logs (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    data_hora DATETIME,
+    acao VARCHAR(100),
+    detalhes TEXT
+);
+```
+
+## Funções Principais do Sistema
+
+### Cadastro de Máquinas
+
+**Descrição**: Permite inserir um novo registro de máquina no banco de dados.
+
+**Parâmetros**: Um conjunto de informações relacionadas à máquina, como nome, setor, processador, memória, etc.
+
+**Exemplo de Uso**:
+```python
+def register_maquina(self, maquina_data):
+    # Lógica para inserir dados na tabela 'cadastro_maquinas'
+    query = "INSERT INTO cadastro_maquinas (Nome_Dispositivo, Setor, ...) VALUES (%s, %s, ...)"
+    self.cursor.execute(query, maquina_data)
+    self.connection.commit()
+```
+
+### Atualização de Máquinas
+
+**Descrição**: Atualiza as informações de uma máquina existente no banco de dados com base no `Id_Maquina`.
+
+**Parâmetros**: Dados da máquina, incluindo o ID da máquina a ser atualizada.
+
+**Exemplo de Uso**:
+```python
+def update_maquina(self, fullDataSet):
+    # Lógica para atualizar a máquina no banco
+    query = "UPDATE cadastro_maquinas SET Nome_Dispositivo = %s WHERE Id_Maquina = %s"
+    self.cursor.execute(query, fullDataSet)
+    self.connection.commit()
+```
+
+### Exclusão de Máquinas
+
+**Descrição**: Exclui uma máquina do banco de dados com base no `Id_Maquina`.
+
+**Parâmetros**: ID da máquina a ser excluída.
+
+**Exemplo de Uso**:
+```python
+def delete_maquina(self, Id_Maquina):
+    # Lógica para excluir uma máquina
+    query = "DELETE FROM cadastro_maquinas WHERE Id_Maquina = %s"
+    self.cursor.execute(query, (Id_Maquina,))
+    self.connection.commit()
+```
+
+### Geração de Logs
+
+**Descrição**: Registra logs no banco de dados sempre que uma ação importante é realizada (cadastro, atualização ou exclusão de máquinas).
+
+**Parâmetros**: Ação realizada (cadastro, atualização, exclusão) e detalhes da ação.
+
+**Exemplo de Uso**:
+```python
+def registrar_log(self, acao, detalhes):
+    data_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    query = "INSERT INTO logs (data_hora, acao, detalhes) VALUES (%s, %s, %s)"
+    self.cursor.execute(query, (data_hora, acao, detalhes))
+    self.connection.commit()
+```
+
+### Exportação para Excel
+
+**Descrição**: Permite a exportação dos dados das máquinas e logs para arquivos Excel.
+
+**Exemplo de Uso**:
+```python
+def exportar_para_excel(self):
+    query = "SELECT * FROM cadastro_maquinas"
+    maquinas = pd.read_sql_query(query, self.connection)
+    maquinas.to_excel('maquinas.xlsx', sheet_name='Máquinas', index=False)
+```
+
+## Fluxo de Trabalho
+
+1. **Cadastro de Máquina**: O usuário insere os dados de uma máquina na interface. O sistema registra a máquina no banco de dados e gera um log da ação.
+2. **Atualização de Máquina**: O usuário seleciona uma máquina e modifica os dados. O sistema atualiza o registro no banco de dados e gera um log da alteração.
+3. **Exclusão de Máquina**: O usuário seleciona uma máquina para excluir. O sistema remove o registro do banco de dados e gera um log da exclusão.
+4. **Exportação de Dados**: O usuário pode exportar os dados das máquinas para um arquivo Excel.
+5. **Visualização de Logs**: O sistema permite a visualização dos logs gerados em uma planilha Excel.
+
+## Estrutura de Logs
+
+Os logs são registrados na tabela `logs` e contêm três campos principais:
+
+- **data_hora**: Data e hora da ação realizada.
+- **acao**: Ação executada (Cadastro, Atualização, Exclusão).
+- **detalhes**: Detalhes específicos da ação, como o ID da máquina ou nome do colaborador.
+
+## Possíveis Melhorias Futuras
+
+- **Validação de Dados**: Implementação de validações mais robustas antes de realizar o cadastro, atualização ou exclusão.
+- **Interface Web**: Criar uma versão web do sistema para facilitar o acesso e gerenciamento de máquinas remotamente.
+- **Autenticação de Usuário**: Adicionar autenticação para garantir que apenas usuários autorizados possam executar ações críticas.
+
+## Como Executar o Sistema
+
+### Pré-requisitos
+
+1. Instalar o Python 3.x.
+2. Instalar as dependências necessárias:
+   ```bash
+   pip install mysql-connector-python pandas pyqt5
+   ```
+
+### Passos para Executar
+
+1. **Conectar ao Banco de Dados**: Certifique-se de que o banco de dados MySQL está em execução.
+2. **Rodar o Script**: Execute o script Python contendo a lógica de cadastro, atualização e exclusão das máquinas.
+   ```bash
+   python nome_do_arquivo.py
+   ```
+
+## Considerações Finais
+
+Este sistema oferece uma solução simples, mas eficiente, para o gerenciamento de máquinas e o registro de logs. A implementação de uma interface gráfica e funcionalidades de exportação facilita a administração dos dados. A documentação completa visa fornecer a estrutura necessária para que outros desenvolvedores possam entender e expandir o sistema no futuro.

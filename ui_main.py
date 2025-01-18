@@ -27,6 +27,14 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(913, 627)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        MainWindow.setSizePolicy(sizePolicy)
+        font = QFont()
+        font.setBold(True)
+        MainWindow.setFont(font)
         MainWindow.setStyleSheet(u"background-color: rgb(43, 43, 43);")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -112,9 +120,9 @@ class Ui_MainWindow(object):
         self.btn_Home = QPushButton(self.page)
         self.btn_Home.setObjectName(u"btn_Home")
         self.btn_Home.setMinimumSize(QSize(0, 20))
-        font = QFont()
-        font.setPointSize(11)
-        self.btn_Home.setFont(font)
+        font1 = QFont()
+        font1.setPointSize(11)
+        self.btn_Home.setFont(font1)
         self.btn_Home.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         self.verticalLayout_5.addWidget(self.btn_Home)
@@ -122,20 +130,17 @@ class Ui_MainWindow(object):
         self.btn_Cadastrar = QPushButton(self.page)
         self.btn_Cadastrar.setObjectName(u"btn_Cadastrar")
         self.btn_Cadastrar.setMinimumSize(QSize(0, 20))
-        self.btn_Cadastrar.setFont(font)
+        self.btn_Cadastrar.setFont(font1)
         self.btn_Cadastrar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         self.verticalLayout_5.addWidget(self.btn_Cadastrar)
 
         self.btn_Contatos = QPushButton(self.page)
         self.btn_Contatos.setObjectName(u"btn_Contatos")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.btn_Contatos.sizePolicy().hasHeightForWidth())
         self.btn_Contatos.setSizePolicy(sizePolicy)
         self.btn_Contatos.setMinimumSize(QSize(0, 20))
-        self.btn_Contatos.setFont(font)
+        self.btn_Contatos.setFont(font1)
         self.btn_Contatos.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         self.verticalLayout_5.addWidget(self.btn_Contatos)
@@ -143,7 +148,7 @@ class Ui_MainWindow(object):
         self.btn_Sobre = QPushButton(self.page)
         self.btn_Sobre.setObjectName(u"btn_Sobre")
         self.btn_Sobre.setMinimumSize(QSize(0, 20))
-        self.btn_Sobre.setFont(font)
+        self.btn_Sobre.setFont(font1)
         self.btn_Sobre.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
 
         self.verticalLayout_5.addWidget(self.btn_Sobre)
@@ -281,54 +286,180 @@ class Ui_MainWindow(object):
         self.frame_4.setFrameShadow(QFrame.Raised)
         self.gridLayout = QGridLayout(self.frame_4)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.txt_SistemaOperacional = QLineEdit(self.frame_4)
-        self.txt_SistemaOperacional.setObjectName(u"txt_SistemaOperacional")
-        self.txt_SistemaOperacional.setAlignment(Qt.AlignCenter)
+        self.label_11 = QLabel(self.frame_4)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setFont(font)
+        self.label_11.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_11.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.txt_SistemaOperacional, 5, 1, 1, 1)
+        self.gridLayout.addWidget(self.label_11, 2, 1, 1, 1)
 
-        self.txt_Licenciado = QLineEdit(self.frame_4)
-        self.txt_Licenciado.setObjectName(u"txt_Licenciado")
-        self.txt_Licenciado.setAlignment(Qt.AlignCenter)
+        self.label_15 = QLabel(self.frame_4)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setFont(font)
+        self.label_15.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_15.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
-        self.gridLayout.addWidget(self.txt_Licenciado, 5, 2, 1, 1)
+        self.gridLayout.addWidget(self.label_15, 2, 3, 1, 1)
 
-        self.txt_Marca = QLineEdit(self.frame_4)
-        self.txt_Marca.setObjectName(u"txt_Marca")
-        self.txt_Marca.setAlignment(Qt.AlignCenter)
+        self.label_18 = QLabel(self.frame_4)
+        self.label_18.setObjectName(u"label_18")
+        self.label_18.setFont(font)
+        self.label_18.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_18.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
-        self.gridLayout.addWidget(self.txt_Marca, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_18, 7, 1, 1, 1)
 
-        self.txt_Processador = QLineEdit(self.frame_4)
-        self.txt_Processador.setObjectName(u"txt_Processador")
-        self.txt_Processador.setAlignment(Qt.AlignCenter)
+        self.txt_IdDispositivo = QLineEdit(self.frame_4)
+        self.txt_IdDispositivo.setObjectName(u"txt_IdDispositivo")
+        self.txt_IdDispositivo.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.txt_Processador, 4, 1, 1, 1)
+        self.gridLayout.addWidget(self.txt_IdDispositivo, 6, 0, 1, 4)
+
+        self.txt_MemoriaRam = QLineEdit(self.frame_4)
+        self.txt_MemoriaRam.setObjectName(u"txt_MemoriaRam")
+        self.txt_MemoriaRam.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.txt_MemoriaRam, 8, 2, 1, 1)
+
+        self.label_21 = QLabel(self.frame_4)
+        self.label_21.setObjectName(u"label_21")
+        sizePolicy.setHeightForWidth(self.label_21.sizePolicy().hasHeightForWidth())
+        self.label_21.setSizePolicy(sizePolicy)
+        self.label_21.setFont(font)
+        self.label_21.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_21.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.gridLayout.addWidget(self.label_21, 9, 0, 1, 1)
+
+        self.label_16 = QLabel(self.frame_4)
+        self.label_16.setObjectName(u"label_16")
+        sizePolicy.setHeightForWidth(self.label_16.sizePolicy().hasHeightForWidth())
+        self.label_16.setSizePolicy(sizePolicy)
+        self.label_16.setFont(font)
+        self.label_16.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_16.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.gridLayout.addWidget(self.label_16, 4, 1, 1, 2)
+
+        self.label_20 = QLabel(self.frame_4)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setFont(font)
+        self.label_20.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_20.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.gridLayout.addWidget(self.label_20, 7, 3, 1, 1)
+
+        self.txt_Id = QLineEdit(self.frame_4)
+        self.txt_Id.setObjectName(u"txt_Id")
+        font2 = QFont()
+        font2.setFamilies([u"MS Shell Dlg 2"])
+        font2.setBold(False)
+        font2.setItalic(False)
+        self.txt_Id.setFont(font2)
+        self.txt_Id.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.txt_Id, 3, 0, 1, 1)
+
+        self.label_19 = QLabel(self.frame_4)
+        self.label_19.setObjectName(u"label_19")
+        self.label_19.setFont(font)
+        self.label_19.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_19.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.gridLayout.addWidget(self.label_19, 7, 2, 1, 1)
 
         self.txt_Service = QLineEdit(self.frame_4)
         self.txt_Service.setObjectName(u"txt_Service")
         self.txt_Service.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.txt_Service, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.txt_Service, 10, 0, 1, 1)
 
         self.txt_Cor = QLineEdit(self.frame_4)
         self.txt_Cor.setObjectName(u"txt_Cor")
         self.txt_Cor.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.txt_Cor, 6, 2, 1, 1)
+        self.gridLayout.addWidget(self.txt_Cor, 12, 2, 1, 1)
+
+        self.txt_Marca = QLineEdit(self.frame_4)
+        self.txt_Marca.setObjectName(u"txt_Marca")
+        self.txt_Marca.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.txt_Marca, 8, 0, 1, 1)
+
+        self.tit_Cadastro = QLabel(self.frame_4)
+        self.tit_Cadastro.setObjectName(u"tit_Cadastro")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.tit_Cadastro.sizePolicy().hasHeightForWidth())
+        self.tit_Cadastro.setSizePolicy(sizePolicy2)
+        self.tit_Cadastro.setMaximumSize(QSize(16777215, 200))
+        self.tit_Cadastro.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
+        self.tit_Cadastro.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.tit_Cadastro, 1, 0, 1, 4)
+
+        self.txt_Processador = QLineEdit(self.frame_4)
+        self.txt_Processador.setObjectName(u"txt_Processador")
+        self.txt_Processador.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.txt_Processador, 8, 1, 1, 1)
+
+        self.txt_DataAquisicao = QLineEdit(self.frame_4)
+        self.txt_DataAquisicao.setObjectName(u"txt_DataAquisicao")
+        self.txt_DataAquisicao.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.txt_DataAquisicao, 12, 1, 1, 1)
 
         self.txt_Setor = QLineEdit(self.frame_4)
         self.txt_Setor.setObjectName(u"txt_Setor")
         self.txt_Setor.setAlignment(Qt.AlignCenter)
         self.txt_Setor.setReadOnly(False)
 
-        self.gridLayout.addWidget(self.txt_Setor, 2, 2, 1, 1)
+        self.gridLayout.addWidget(self.txt_Setor, 3, 2, 1, 1)
 
-        self.txt_DataAquisicao = QLineEdit(self.frame_4)
-        self.txt_DataAquisicao.setObjectName(u"txt_DataAquisicao")
-        self.txt_DataAquisicao.setAlignment(Qt.AlignCenter)
+        self.txt_Colaborador = QLineEdit(self.frame_4)
+        self.txt_Colaborador.setObjectName(u"txt_Colaborador")
+        self.txt_Colaborador.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.txt_DataAquisicao, 6, 1, 1, 1)
+        self.gridLayout.addWidget(self.txt_Colaborador, 3, 3, 1, 1)
+
+        self.txt_Arquitetura = QLineEdit(self.frame_4)
+        self.txt_Arquitetura.setObjectName(u"txt_Arquitetura")
+        self.txt_Arquitetura.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.txt_Arquitetura, 10, 3, 1, 1)
+
+        self.label_9 = QLabel(self.frame_4)
+        self.label_9.setObjectName(u"label_9")
+        sizePolicy.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
+        self.label_9.setSizePolicy(sizePolicy)
+        self.label_9.setMinimumSize(QSize(0, 0))
+        self.label_9.setSizeIncrement(QSize(0, 0))
+        self.label_9.setFont(font)
+        self.label_9.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_9.setTextFormat(Qt.AutoText)
+        self.label_9.setScaledContents(False)
+        self.label_9.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+        self.label_9.setWordWrap(False)
+        self.label_9.setMargin(0)
+        self.label_9.setIndent(-1)
+
+        self.gridLayout.addWidget(self.label_9, 2, 0, 1, 1)
+
+        self.txt_Licenciado = QLineEdit(self.frame_4)
+        self.txt_Licenciado.setObjectName(u"txt_Licenciado")
+        self.txt_Licenciado.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.txt_Licenciado, 10, 2, 1, 1)
+
+        self.txt_SistemaOperacional = QLineEdit(self.frame_4)
+        self.txt_SistemaOperacional.setObjectName(u"txt_SistemaOperacional")
+        self.txt_SistemaOperacional.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.txt_SistemaOperacional, 10, 1, 1, 1)
 
         self.btn_SalvarCadastro = QPushButton(self.frame_4)
         self.btn_SalvarCadastro.setObjectName(u"btn_SalvarCadastro")
@@ -347,74 +478,93 @@ class Ui_MainWindow(object):
 "	background-color: rgb(243,243,243);\n"
 "}")
 
-        self.gridLayout.addWidget(self.btn_SalvarCadastro, 7, 0, 1, 4, Qt.AlignHCenter)
-
-        self.txt_SSD = QLineEdit(self.frame_4)
-        self.txt_SSD.setObjectName(u"txt_SSD")
-        self.txt_SSD.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.txt_SSD, 4, 3, 1, 1)
-
-        self.txt_NomeDispositivo = QLineEdit(self.frame_4)
-        self.txt_NomeDispositivo.setObjectName(u"txt_NomeDispositivo")
-        self.txt_NomeDispositivo.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.txt_NomeDispositivo, 2, 1, 1, 1)
-
-        self.txt_Colaborador = QLineEdit(self.frame_4)
-        self.txt_Colaborador.setObjectName(u"txt_Colaborador")
-        self.txt_Colaborador.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.txt_Colaborador, 2, 3, 1, 1)
-
-        self.txt_Arquitetura = QLineEdit(self.frame_4)
-        self.txt_Arquitetura.setObjectName(u"txt_Arquitetura")
-        self.txt_Arquitetura.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.txt_Arquitetura, 5, 3, 1, 1)
+        self.gridLayout.addWidget(self.btn_SalvarCadastro, 13, 0, 1, 4, Qt.AlignHCenter)
 
         self.txt_AnoFabricacao = QLineEdit(self.frame_4)
         self.txt_AnoFabricacao.setObjectName(u"txt_AnoFabricacao")
         self.txt_AnoFabricacao.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.txt_AnoFabricacao, 6, 0, 1, 1)
+        self.gridLayout.addWidget(self.txt_AnoFabricacao, 12, 0, 1, 1)
 
-        self.txt_Id = QLineEdit(self.frame_4)
-        self.txt_Id.setObjectName(u"txt_Id")
-        font1 = QFont()
-        font1.setFamilies([u"MS Shell Dlg 2"])
-        font1.setBold(False)
-        font1.setItalic(False)
-        self.txt_Id.setFont(font1)
-        self.txt_Id.setAlignment(Qt.AlignCenter)
+        self.label_17 = QLabel(self.frame_4)
+        self.label_17.setObjectName(u"label_17")
+        sizePolicy.setHeightForWidth(self.label_17.sizePolicy().hasHeightForWidth())
+        self.label_17.setSizePolicy(sizePolicy)
+        self.label_17.setFont(font)
+        self.label_17.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_17.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
-        self.gridLayout.addWidget(self.txt_Id, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_17, 7, 0, 1, 1)
 
-        self.txt_IdDispositivo = QLineEdit(self.frame_4)
-        self.txt_IdDispositivo.setObjectName(u"txt_IdDispositivo")
-        self.txt_IdDispositivo.setAlignment(Qt.AlignCenter)
+        self.label_13 = QLabel(self.frame_4)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setFont(font)
+        self.label_13.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_13.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
 
-        self.gridLayout.addWidget(self.txt_IdDispositivo, 3, 0, 1, 4)
+        self.gridLayout.addWidget(self.label_13, 2, 2, 1, 1)
 
-        self.txt_MemoriaRam = QLineEdit(self.frame_4)
-        self.txt_MemoriaRam.setObjectName(u"txt_MemoriaRam")
-        self.txt_MemoriaRam.setAlignment(Qt.AlignCenter)
+        self.txt_NomeDispositivo = QLineEdit(self.frame_4)
+        self.txt_NomeDispositivo.setObjectName(u"txt_NomeDispositivo")
+        self.txt_NomeDispositivo.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.txt_MemoriaRam, 4, 2, 1, 1)
+        self.gridLayout.addWidget(self.txt_NomeDispositivo, 3, 1, 1, 1)
 
-        self.tit_Cadastro = QLabel(self.frame_4)
-        self.tit_Cadastro.setObjectName(u"tit_Cadastro")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.tit_Cadastro.sizePolicy().hasHeightForWidth())
-        self.tit_Cadastro.setSizePolicy(sizePolicy2)
-        self.tit_Cadastro.setMaximumSize(QSize(16777215, 200))
-        self.tit_Cadastro.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"background-color: rgb(255, 255, 255);")
-        self.tit_Cadastro.setAlignment(Qt.AlignCenter)
+        self.txt_SSD = QLineEdit(self.frame_4)
+        self.txt_SSD.setObjectName(u"txt_SSD")
+        self.txt_SSD.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.tit_Cadastro, 1, 0, 1, 4)
+        self.gridLayout.addWidget(self.txt_SSD, 8, 3, 1, 1)
+
+        self.label_22 = QLabel(self.frame_4)
+        self.label_22.setObjectName(u"label_22")
+        sizePolicy.setHeightForWidth(self.label_22.sizePolicy().hasHeightForWidth())
+        self.label_22.setSizePolicy(sizePolicy)
+        self.label_22.setFont(font)
+        self.label_22.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_22.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.gridLayout.addWidget(self.label_22, 11, 0, 1, 1)
+
+        self.label_23 = QLabel(self.frame_4)
+        self.label_23.setObjectName(u"label_23")
+        self.label_23.setFont(font)
+        self.label_23.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_23.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.gridLayout.addWidget(self.label_23, 11, 1, 1, 1)
+
+        self.label_24 = QLabel(self.frame_4)
+        self.label_24.setObjectName(u"label_24")
+        self.label_24.setFont(font)
+        self.label_24.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_24.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.gridLayout.addWidget(self.label_24, 9, 1, 1, 1)
+
+        self.label_25 = QLabel(self.frame_4)
+        self.label_25.setObjectName(u"label_25")
+        self.label_25.setFont(font)
+        self.label_25.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_25.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.gridLayout.addWidget(self.label_25, 9, 2, 1, 1)
+
+        self.label_26 = QLabel(self.frame_4)
+        self.label_26.setObjectName(u"label_26")
+        self.label_26.setFont(font)
+        self.label_26.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_26.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.gridLayout.addWidget(self.label_26, 9, 3, 1, 1)
+
+        self.label_27 = QLabel(self.frame_4)
+        self.label_27.setObjectName(u"label_27")
+        self.label_27.setFont(font)
+        self.label_27.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_27.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.gridLayout.addWidget(self.label_27, 11, 2, 1, 1)
 
 
         self.verticalLayout_15.addWidget(self.frame_4)
@@ -467,10 +617,10 @@ class Ui_MainWindow(object):
         __qtablewidgetitem15 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(15, __qtablewidgetitem15)
         self.tableWidget.setObjectName(u"tableWidget")
-        font2 = QFont()
-        font2.setPointSize(10)
-        font2.setBold(True)
-        self.tableWidget.setFont(font2)
+        font3 = QFont()
+        font3.setPointSize(10)
+        font3.setBold(True)
+        self.tableWidget.setFont(font3)
         self.tableWidget.setStyleSheet(u"QTableWidget{\n"
 "	gridline-color: rgb(0, 0, 0);\n"
 "	color: rgb(0, 0, 0);\n"
@@ -634,7 +784,7 @@ class Ui_MainWindow(object):
 
         self.toolBox.setCurrentIndex(0)
         self.Pages.setCurrentIndex(1)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -653,24 +803,40 @@ class Ui_MainWindow(object):
         self.btn_toggle.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Sistema de Cadastro", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><img src=\":/icons/images.png\"/></p></body></html>", None))
-        self.txt_SistemaOperacional.setPlaceholderText(QCoreApplication.translate("MainWindow", u"SO", None))
-        self.txt_Licenciado.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Licenciado", None))
-        self.txt_Marca.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Marca", None))
-        self.txt_Processador.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Processador", None))
-        self.txt_Service.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Service", None))
-        self.txt_Cor.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Cor", None))
-        self.txt_Setor.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Setor", None))
-        self.txt_DataAquisicao.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Data de Aquisi\u00e7\u00e3o", None))
-        self.btn_SalvarCadastro.setText(QCoreApplication.translate("MainWindow", u"Salvar Cadastro", None))
-        self.txt_SSD.setPlaceholderText(QCoreApplication.translate("MainWindow", u"SSD", None))
-        self.txt_NomeDispositivo.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Nome do Dispositivo", None))
-        self.txt_Colaborador.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Colaborador", None))
-        self.txt_Arquitetura.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Arquitetura", None))
-        self.txt_AnoFabricacao.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ano de Fabrica\u00e7\u00e3o", None))
-        self.txt_Id.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ID", None))
-        self.txt_IdDispositivo.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ID Dispositivo", None))
-        self.txt_MemoriaRam.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Memoria RAM", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Nome do Dispositivo", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Colaborador", None))
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Processador", None))
+        self.txt_IdDispositivo.setPlaceholderText("")
+        self.txt_MemoriaRam.setPlaceholderText("")
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u"Service", None))
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"ID Dispositivo", None))
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"SSD", None))
+        self.txt_Id.setPlaceholderText("")
+        self.label_19.setText(QCoreApplication.translate("MainWindow", u"Memoria RAM", None))
+        self.txt_Service.setPlaceholderText("")
+        self.txt_Cor.setPlaceholderText("")
+        self.txt_Marca.setPlaceholderText("")
         self.tit_Cadastro.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">Cadastro de M\u00e1quinas</span></p></body></html>", None))
+        self.txt_Processador.setPlaceholderText("")
+        self.txt_DataAquisicao.setPlaceholderText("")
+        self.txt_Setor.setPlaceholderText("")
+        self.txt_Colaborador.setPlaceholderText("")
+        self.txt_Arquitetura.setPlaceholderText("")
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"ID", None))
+        self.txt_Licenciado.setPlaceholderText("")
+        self.txt_SistemaOperacional.setPlaceholderText("")
+        self.btn_SalvarCadastro.setText(QCoreApplication.translate("MainWindow", u"Salvar Cadastro", None))
+        self.txt_AnoFabricacao.setPlaceholderText("")
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Marca", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"Setor", None))
+        self.txt_NomeDispositivo.setPlaceholderText("")
+        self.txt_SSD.setPlaceholderText("")
+        self.label_22.setText(QCoreApplication.translate("MainWindow", u"Ano de Fabrica\u00e7\u00e3o", None))
+        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Data de Aquisi\u00e7\u00e3o", None))
+        self.label_24.setText(QCoreApplication.translate("MainWindow", u"SO", None))
+        self.label_25.setText(QCoreApplication.translate("MainWindow", u"Licenciado", None))
+        self.label_26.setText(QCoreApplication.translate("MainWindow", u"Arquitetura", None))
+        self.label_27.setText(QCoreApplication.translate("MainWindow", u"Cor", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Cadastro", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">MAQUINAS</span></p></body></html>", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
