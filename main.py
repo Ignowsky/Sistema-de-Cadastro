@@ -250,9 +250,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             cnx
         )
         
-            
-        maquinas.to_excel('maquinas.xlsx', sheet_name='Maquinas', index=False)
-        
         # Gerar o arquivo Excel dos logs
         logs = pd.read_sql_query(
             """
@@ -261,15 +258,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             """,
             cnx
         )
-        
-        logs.to_excel('logs.xlsx', sheet_name='Registros', index=False)
+        # Gerando o arquivo em excel.
+        with pd.ExcelWriter("maquinas_logs.xlsx") as writer:
+            maquinas.to_excel(writer, sheet_name="Maquinas", index=False)
+            logs.to_excel(writer, sheet_name="Logs", index=False)
             
+        print("Arquivo gerado com sucesso!")
+                
+        
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)
         msg.setWindowTitle("Arquivo Gerado!")
         msg.setText("Arquivo gerado em Excel com sucesso!")
         msg.exec()
-        
+        return 'Exportação Concluída!'
             
         
         
