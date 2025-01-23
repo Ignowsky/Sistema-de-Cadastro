@@ -2,7 +2,7 @@ import mysql.connector
 from datetime import datetime
 
 class Data_base:
-    def __init__(self, host='localhost', user='root', password='joao1301', database='bd_cadastros'):
+    def __init__(self, host='localhost', user='liber', password='liber110616', database='bd_cadastros'):
         self.host = host
         self.user = user
         self.password = password

@@ -237,8 +237,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         cnx = mysql.connector.connect(
             host='localhost',
-            user='root',
-            password='joao1301',
+            user='liber',
+            password='liber110616',
             database='bd_cadastros'
         )
             
